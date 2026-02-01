@@ -1,12 +1,12 @@
 {
-  "ServiceName": "ai-capstone-34",
+  "ServiceName": "react-app-aws-runner",
   "SourceConfiguration": {
     "AuthenticationConfiguration": {
       "ConnectionArn": "YOUR_CONNECTION_ARN"
     },
     "AutoDeploymentsEnabled": true,
     "CodeRepository": {
-      "RepositoryUrl": "https://github.com/Dedeepya2026/AI_Integeration_Capstone3.4",
+      "RepositoryUrl": "https://github.com/Dedeepya2026/react-app-aws-runner",
       "SourceCodeVersion": {
         "Type": "BRANCH",
         "Value": "master"
