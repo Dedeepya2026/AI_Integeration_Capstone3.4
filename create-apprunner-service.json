@@ -1,0 +1,23 @@
+{
+  "ServiceName": "ai-capstone-34",
+  "SourceConfiguration": {
+    "AuthenticationConfiguration": {
+      "ConnectionArn": "YOUR_CONNECTION_ARN"
+    },
+    "AutoDeploymentsEnabled": true,
+    "CodeRepository": {
+      "RepositoryUrl": "https://github.com/Dedeepya2026/AI_Integeration_Capstone3.4",
+      "SourceCodeVersion": {
+        "Type": "BRANCH",
+        "Value": "master"
+      },
+      "CodeConfiguration": {
+        "ConfigurationSource": "REPOSITORY"
+      }
+    }
+  },
+  "InstanceConfiguration": {
+    "Cpu": "0.25 vCPU",
+    "Memory": "0.5 GB"
+  }
+}
