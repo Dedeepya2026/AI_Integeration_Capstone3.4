@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Complete your purchase">
+    <title>Checkout - Temu Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="checkout-page">
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-content">
+            <div class="banner-item">
+                <i class="fas fa-truck"></i>
+                <span><strong>Free shipping</strong> <small>Exclusions apply</small></span>
+            </div>
+            <div class="banner-item">
+                <i class="fas fa-rotate-left"></i>
+                <span><strong>Free returns</strong> <small>Within 90 days</small></span>
+            </div>
+            <div class="banner-item">
+                <i class="fas fa-mobile-alt"></i>
+                <span><strong>Get the Temu App</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html" class="logo-box">TEMU</a>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active" id="step-1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Cart</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Shipping</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Payment</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="action-link">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure Checkout</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Content -->
+    <main class="checkout-content">
+        <div class="checkout-container">
+            <!-- Left Section - Steps Content -->
+            <div class="cart-section">
+                <!-- Step 1: Cart Items -->
+                <div class="checkout-step-content" id="cart-step">
+                    <div class="section-title">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Your Cart <span id="cart-item-count">(0 items)</span></h2>
+                    </div>
+
+                    <div class="cart-items" id="cart-items">
+                        <!-- Cart items will be dynamically loaded -->
+                    </div>
+
+                    <div class="empty-cart" id="empty-cart" style="display: none;">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added anything to your cart yet.</p>
+                        <a href="index.html" class="continue-shopping-btn">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+
+                    <div class="promo-code-section">
+                        <h3><i class="fas fa-ticket-alt"></i> Have a promo code?</h3>
+                        <div class="promo-input-group">
+                            <input type="text" id="promo-code" placeholder="Enter promo code">
+                            <button class="apply-promo-btn" onclick="applyPromoCode()">Apply</button>
+                        </div>
+                        <div class="promo-result" id="promo-result"></div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Shipping Information -->
+                <div class="checkout-step-content" id="shipping-step" style="display: none;">
+                    <div class="section-title">
+                        <i class="fas fa-truck"></i>
+                        <h2>Shipping Information</h2>
+                    </div>
+
+                    <form class="shipping-form" id="shipping-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" placeholder="Enter first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="Enter email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <div class="phone-input">
+                                <select id="country-code">
+                                    <option value="+1">+1 (US)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+91">+91 (IN)</option>
+                                    <option value="+86">+86 (CN)</option>
+                                    <option value="+81">+81 (JP)</option>
+                                </select>
+                                <input type="tel" id="phone" placeholder="Enter phone number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" placeholder="Enter street address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address2">Apartment, Suite, etc. (Optional)</label>
+                            <input type="text" id="address2" placeholder="Apt, Suite, Building, Floor">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" placeholder="Enter city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province *</label>
+                                <input type="text" id="state" placeholder="Enter state" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">ZIP/Postal Code *</label>
+                                <input type="text" id="zip" placeholder="Enter ZIP code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <select id="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="IN">India</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="save-address">
+                            <label for="save-address">Save this address for future orders</label>
+                        </div>
+                    </form>
+
+                    <div class="step-navigation">
+                        <button class="nav-btn back-btn" onclick="goToStep(1)">
+                            <i class="fas fa-arrow-left"></i> Back to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Information -->
+                <div class="checkout-step-content" id="payment-step" style="display: none;">
+                    <div class="section-title">
+                        <i class="fas fa-credit-card"></i>
+                        <h2>Payment Method</h2>
+                    </div>
+
+                    <div class="payment-options">
+                        <div class="payment-option" onclick="selectPayment('cod')">
+                            <input type="radio" name="payment" id="cod" value="cod" checked>
+                            <label for="cod">
+                                <div class="payment-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <span class="payment-name">Cash on Delivery</span>
+                                    <span class="payment-desc">Pay when you receive your order</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment('card')">
+                            <input type="radio" name="payment" id="card" value="card">
+                            <label for="card">
+                                <div class="payment-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <span class="payment-name">Credit/Debit Card</span>
+                                    <span class="payment-desc">Visa, Mastercard, American Express</span>
+                                </div>
+                                <div class="card-icons">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <i class="fab fa-cc-amex"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Credit Card Form (hidden by default) -->
+                        <div class="card-form" id="card-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="card-number">Card Number *</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date *</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV *</label>
+                                    <input type="text" id="card-cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Name on Card *</label>
+                                <input type="text" id="card-name" placeholder="Enter name as on card">
+                            </div>
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment('paypal')">
+                            <input type="radio" name="payment" id="paypal" value="paypal">
+                            <label for="paypal">
+                                <div class="payment-icon paypal-icon">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <span class="payment-name">PayPal</span>
+                                    <span class="payment-desc">Pay securely with your PayPal account</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment('gpay')">
+                            <input type="radio" name="payment" id="gpay" value="gpay">
+                            <label for="gpay">
+                                <div class="payment-icon gpay-icon">
+                                    <i class="fab fa-google-pay"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <span class="payment-name">Google Pay</span>
+                                    <span class="payment-desc">Fast and easy payment</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Order Review -->
+                    <div class="order-review">
+                        <h3><i class="fas fa-clipboard-check"></i> Order Review</h3>
+                        <div class="review-shipping">
+                            <div class="review-label">Shipping to:</div>
+                            <div class="review-value" id="review-address">-</div>
+                        </div>
+                        <div class="review-shipping">
+                            <div class="review-label">Phone:</div>
+                            <div class="review-value" id="review-phone">-</div>
+                        </div>
+                        <div class="review-shipping">
+                            <div class="review-label">Email:</div>
+                            <div class="review-value" id="review-email">-</div>
+                        </div>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button class="nav-btn back-btn" onclick="goToStep(2)">
+                            <i class="fas fa-arrow-left"></i> Back to Shipping
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary Section -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span class="free-shipping">FREE</span>
+                </div>
+                <div class="summary-row" id="discount-row" style="display: none;">
+                    <span>Discount</span>
+                    <span id="discount-amount" class="discount">-$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Estimated Tax</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+
+                <div class="savings-banner" id="savings-banner">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>You're saving <strong id="savings-amount">$0.00</strong> on this order!</span>
+                </div>
+
+                <!-- Dynamic button based on step -->
+                <button class="checkout-btn" id="checkout-btn" onclick="handleCheckoutClick()">
+                    <i class="fas fa-arrow-right"></i> <span id="btn-text">Continue to Shipping</span>
+                </button>
+
+                <div class="secure-badges">
+                    <div class="badge-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Buyer Protection</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-undo"></i>
+                        <span>90-Day Returns</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <p>We accept:</p>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                        <i class="fab fa-google-pay"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue Shopping -->
+        <div class="continue-section">
+            <a href="index.html" class="continue-link">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your order. Your order confirmation has been sent to your email.</p>
+            <div class="order-number">
+                Order #: <strong id="order-number">TM-2026012400001</strong>
+            </div>
+            <div class="order-details-summary">
+                <div class="detail-row">
+                    <span>Payment Method:</span>
+                    <strong id="confirm-payment">Cash on Delivery</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Shipping Address:</span>
+                    <strong id="confirm-address">-</strong>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="index.html" class="modal-btn primary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cart-notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Success!</span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let currentStep = 1;
+        let selectedPayment = 'cod';
+
+        // Load cart on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCartItems();
+            updateOrderSummary();
+            updateStepIndicators();
+        });
+
+        function goToStep(step) {
+            currentStep = step;
+
+            // Hide all steps
+            document.getElementById('cart-step').style.display = 'none';
+            document.getElementById('shipping-step').style.display = 'none';
+            document.getElementById('payment-step').style.display = 'none';
+
+            // Show current step
+            if (step === 1) {
+                document.getElementById('cart-step').style.display = 'block';
+                document.getElementById('btn-text').textContent = 'Continue to Shipping';
+                document.getElementById('checkout-btn').querySelector('i').className = 'fas fa-arrow-right';
+            } else if (step === 2) {
+                document.getElementById('shipping-step').style.display = 'block';
+                document.getElementById('btn-text').textContent = 'Continue to Payment';
+                document.getElementById('checkout-btn').querySelector('i').className = 'fas fa-arrow-right';
+            } else if (step === 3) {
+                document.getElementById('payment-step').style.display = 'block';
+                document.getElementById('btn-text').textContent = 'Place Order';
+                document.getElementById('checkout-btn').querySelector('i').className = 'fas fa-lock';
+                updateOrderReview();
+            }
+
+            updateStepIndicators();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateStepIndicators() {
+            for (let i = 1; i <= 3; i++) {
+                const stepEl = document.getElementById('step-' + i);
+                if (i <= currentStep) {
+                    stepEl.classList.add('active');
+                } else {
+                    stepEl.classList.remove('active');
+                }
+            }
+        }
+
+        function handleCheckoutClick() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+
+            if (currentStep === 1) {
+                goToStep(2);
+            } else if (currentStep === 2) {
+                if (validateShippingForm()) {
+                    goToStep(3);
+                }
+            } else if (currentStep === 3) {
+                if (validatePayment()) {
+                    placeOrder();
+                }
+            }
+        }
+
+        function validateShippingForm() {
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const zip = document.getElementById('zip').value.trim();
+            const country = document.getElementById('country').value;
+
+            if (!firstName || !lastName || !email || !phone || !address || !city || !state || !zip || !country) {
+                showNotification('Please fill in all required fields');
+                return false;
+            }
+
+            // Basic email validation
+            if (!email.includes('@') || !email.includes('.')) {
+                showNotification('Please enter a valid email address');
+                return false;
+            }
+
+            // Basic phone validation
+            if (phone.length < 10) {
+                showNotification('Please enter a valid phone number');
+                return false;
+            }
+
+            return true;
+        }
+
+        function validatePayment() {
+            if (selectedPayment === 'card') {
+                const cardNumber = document.getElementById('card-number').value.trim();
+                const cardExpiry = document.getElementById('card-expiry').value.trim();
+                const cardCvv = document.getElementById('card-cvv').value.trim();
+                const cardName = document.getElementById('card-name').value.trim();
+
+                if (!cardNumber || !cardExpiry || !cardCvv || !cardName) {
+                    showNotification('Please fill in all card details');
+                    return false;
+                }
+
+                if (cardNumber.replace(/\s/g, '').length < 16) {
+                    showNotification('Please enter a valid card number');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.getElementById(method).checked = true;
+
+            // Show/hide card form
+            const cardForm = document.getElementById('card-form');
+            if (method === 'card') {
+                cardForm.style.display = 'block';
+            } else {
+                cardForm.style.display = 'none';
+            }
+
+            // Update payment option styling
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById(method).closest('.payment-option').classList.add('selected');
+        }
+
+        function updateOrderReview() {
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const zip = document.getElementById('zip').value.trim();
+            const country = document.getElementById('country').value;
+            const phone = document.getElementById('phone').value.trim();
+            const countryCode = document.getElementById('country-code').value;
+            const email = document.getElementById('email').value.trim();
+
+            document.getElementById('review-address').textContent =
+                `${firstName} ${lastName}, ${address}, ${city}, ${state} ${zip}, ${country}`;
+            document.getElementById('review-phone').textContent = `${countryCode} ${phone}`;
+            document.getElementById('review-email').textContent = email;
+        }
+
+        function placeOrder() {
+            // Get payment method name
+            const paymentNames = {
+                'cod': 'Cash on Delivery',
+                'card': 'Credit/Debit Card',
+                'paypal': 'PayPal',
+                'gpay': 'Google Pay'
+            };
+
+            // Show success modal
+            const modal = document.getElementById('success-modal');
+            const orderNumber = document.getElementById('order-number');
+            const confirmPayment = document.getElementById('confirm-payment');
+            const confirmAddress = document.getElementById('confirm-address');
+
+            if (modal) {
+                // Generate order number
+                const randomNum = Math.floor(Math.random() * 900000) + 100000;
+                orderNumber.textContent = `TM-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}${randomNum}`;
+
+                // Set confirmation details
+                confirmPayment.textContent = paymentNames[selectedPayment];
+                confirmAddress.textContent = document.getElementById('review-address').textContent;
+
+                modal.classList.add('show');
+
+                // Clear cart after successful order
+                cart = [];
+                saveCart();
+            }
+        }
+
+        // Format card number input
+        document.addEventListener('DOMContentLoaded', function () {
+            const cardNumberInput = document.getElementById('card-number');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
+
+            const cardExpiryInput = document.getElementById('card-expiry');
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
