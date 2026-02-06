@@ -803,385 +803,410 @@ aws apprunner list-services \
   --query "ServiceSummaryList[].ServiceUrl"</code></pre>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 10: Deployment Challenges -->
-        <div class="slide slide-content"
-            data-notes="Deployment wasn't smooth on the first try. The key learning was to always check CloudWatch logs for the actual error message.">
-            <h2>🚧 Deployment Challenges</h2>
-            <div class="scroll-content">
-                <table>
-                    <tr>
-                        <th>Challenge</th>
-                        <th>Solution</th>
-                    </tr>
-                    <tr>
-                        <td>First-time AWS setup</td>
-                        <td>Console wizard for GitHub connection</td>
-                    </tr>
-                    <tr>
-                        <td>Runtime compatibility</td>
-                        <td>Updated to nodejs22</td>
-                    </tr>
-                    <tr>
-                        <td>Understanding logs</td>
-                        <td>CloudWatch log streams</td>
-                    </tr>
-                    <tr>
-                        <td>CI/CD configuration</td>
-                        <td>"Configuration source: Repository"</td>
-                    </tr>
-                </table>
-
-                <h3>Deployment Timeline</h3>
-                <div class="diagram" style="text-align: center;">
-                    1. Initial attempt ❌ (runtime error)
-                    ↓
-                    2. Read CloudWatch logs 📋
-                    ↓
-                    3. Fix apprunner.yaml 🔧
-                    ↓
-                    4. Delete & recreate service 🔄
-                    ↓
-                    5. SUCCESS ✅ Live URL obtained!</div>
-            </div>
-        </div>
-
-        <!-- SLIDE 12: AWS App Runner Status -->
-        <div class="slide slide-content"
-            data-notes="Here's the AWS App Runner console showing my service is running successfully. The green checkmark indicates the application is live and healthy. The service was created on February 2nd, 2026 and has been running continuously since then.">
-            <h2>✅ AWS App Runner - Service Running</h2>
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">
-                <img src="apprunner-status.png" alt="AWS App Runner Status - Running"
-                    style="max-width: 95%; max-height: 60vh; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.1);">
-                <div style="margin-top: 30px;">
-                    <table style="max-width: 600px; margin: 0 auto;">
-                        <tr>
-                            <th>Service Name</th>
-                            <td>react-app-aws-runner</td>
-                        </tr>
-                        <tr>
-                            <th>Status</th>
-                            <td><span style="color: #4caf50; font-weight: bold;">✓ Running</span></td>
-                        </tr>
-                        <tr>
-                            <th>Live URL</th>
-                            <td><a href="https://gktp6jkb3c.us-east-1.awsapprunner.com" target="_blank"
-                                    style="color: #64b5f6;">gktp6jkb3c.us-east-1.awsapprunner.com</a></td>
-                        </tr>
-                    </table>
+            <!-- SLIDE 10: AWS CLI in Cursor -->
+            <div class="slide slide-content"
+                data-notes="Here you can see AWS CLI is properly configured and connected within Cursor IDE. The aws sts get-caller-identity command confirms my AWS account is correctly linked, allowing me to deploy directly from the IDE.">
+                <h2>🔗 AWS CLI Connected to Cursor IDE</h2>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 50px; flex: 1;">
+                    <img src="aws-cli-cursor.png" alt="AWS CLI in Cursor showing account identity"
+                        style="max-height: 65vh; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.1);">
+                    <div>
+                        <h3>Account Verified ✓</h3>
+                        <div class="card" style="margin-bottom: 20px;">
+                            <p><strong>Command:</strong></p>
+                            <pre style="margin: 10px 0;"><code>aws sts get-caller-identity</code></pre>
+                        </div>
+                        <div class="card">
+                            <p><strong>Benefits:</strong></p>
+                            <ul style="margin-top: 10px;">
+                                <li>Deploy from IDE terminal</li>
+                                <li>No context switching</li>
+                                <li>Faster iteration</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 13: Live Demo -->
-        <div class="slide slide-demo"
-            data-notes="Let me show you the live application. Open the URL and demonstrate: homepage, click a product, add to cart, show categories dropdown, perform a search.">
-            <h1>🚀 Live Demo</h1>
-            <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn">
-                <i class="fas fa-external-link-alt"></i> Open Live Application
-            </a>
-            <div style="margin-top: 50px;">
-                <table style="max-width: 500px; margin: 0 auto;">
-                    <tr>
-                        <th>Setting</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr>
-                        <td>CPU</td>
-                        <td>0.25 vCPU</td>
-                    </tr>
-                    <tr>
-                        <td>Memory</td>
-                        <td>0.5 GB</td>
-                    </tr>
-                    <tr>
-                        <td>Auto-deploy</td>
-                        <td>Enabled</td>
-                    </tr>
-                    <tr>
-                        <td>Region</td>
-                        <td>us-east-1</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- SLIDE 12: Feedback -->
-        <div class="slide slide-content"
-            data-notes="Based on peer feedback in Workshop 4, I made several improvements including better category navigation and enhanced mobile experience.">
-            <h2>🔄 Phase 6: Feedback & Iteration</h2>
-            <div class="two-column">
-                <div>
-                    <h3>Feedback Received</h3>
-                    <ul>
-                        <li>"Add more categories" → <strong>Added 20+</strong></li>
-                        <li>"Make search visible" → <strong>Enlarged bar</strong></li>
-                        <li>"Add product badges" → <strong>Hot/Sale/New</strong></li>
-                        <li>"Fix mobile nav" → <strong>Responsive menu</strong></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Iterations Made</h3>
-                    <ul>
-                        <li><span class="check">✓</span> Enhanced hover effects</li>
-                        <li><span class="check">✓</span> Loading animations</li>
-                        <li><span class="check">✓</span> Better form validation</li>
-                        <li><span class="check">✓</span> Cart notification popups</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 13: AI's Role -->
-        <div class="slide slide-content"
-            data-notes="The most effective way to use AI was with specific, detailed prompts. Vague requests didn't work well. I also learned to always review and test AI-generated code.">
-            <h2>🤖 AI's Role & Lessons Learned</h2>
-            <div class="scroll-content">
-                <h3>Most Effective AI Prompts</h3>
-                <table>
-                    <tr>
-                        <th>Type</th>
-                        <th>Example</th>
-                        <th>Result</th>
-                    </tr>
-                    <tr>
-                        <td>Feature</td>
-                        <td>"Add product detail page with tabs"</td>
-                        <td>Complete HTML/CSS/JS</td>
-                    </tr>
-                    <tr>
-                        <td>Bug fix</td>
-                        <td>"Cart count not updating"</td>
-                        <td>Found missing listener</td>
-                    </tr>
-                    <tr>
-                        <td>Deploy help</td>
-                        <td>"Runtime not supported error"</td>
-                        <td>Suggested nodejs22</td>
-                    </tr>
-                </table>
-
-                <h3>Key Lessons</h3>
-                <div class="three-column" style="margin-top: 20px;">
-                    <div class="card"><strong>1.</strong> Be specific with prompts</div>
-                    <div class="card"><strong>2.</strong> Iterate in small steps</div>
-                    <div class="card"><strong>3.</strong> Always review AI code</div>
-                    <div class="card"><strong>4.</strong> Use AI for debugging</div>
-                    <div class="card"><strong>5.</strong> Document everything</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 14: Tools Used -->
-        <div class="slide slide-content"
-            data-notes="This project used a modern development stack combining AI assistance with cloud deployment tools.">
-            <h2>🛠️ Tools Used</h2>
-            <div class="three-column">
-                <div class="card">
-                    <h3 style="color: #e53935;">AI & Development</h3>
-                    <ul>
-                        <li><strong>Antigravity</strong> - AI coding</li>
-                        <li><strong>Cursor IDE</strong> - Editor</li>
-                        <li><strong>Claude</strong> - Prototyping</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 style="color: #f57c00;">Cloud & DevOps</h3>
-                    <ul>
-                        <li><strong>AWS App Runner</strong></li>
-                        <li><strong>AWS CLI</strong></li>
-                        <li><strong>CloudWatch</strong></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 style="color: #4caf50;">Version Control</h3>
-                    <ul>
-                        <li><strong>Git</strong></li>
-                        <li><strong>GitHub</strong></li>
-                        <li><strong>Auto-deploy</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 15: Value Add -->
-        <div class="slide slide-content"
-            data-notes="The main value is demonstrating that AI-assisted development can dramatically reduce project timelines while maintaining quality.">
-            <h2>💰 Value Add & Business Impact</h2>
-            <div class="two-column">
-                <div>
-                    <h3>Cost/Benefit Analysis</h3>
+            <!-- SLIDE 11: Deployment Challenges -->
+            <div class="slide slide-content"
+                data-notes="Deployment wasn't smooth on the first try. The key learning was to always check CloudWatch logs for the actual error message.">
+                <h2>🚧 Deployment Challenges</h2>
+                <div class="scroll-content">
                     <table>
                         <tr>
-                            <td>Time saved</td>
-                            <td><strong>~40 hours</strong></td>
+                            <th>Challenge</th>
+                            <th>Solution</th>
                         </tr>
                         <tr>
-                            <td>Deploy complexity</td>
-                            <td><strong>Days → Minutes</strong></td>
+                            <td>First-time AWS setup</td>
+                            <td>Console wizard for GitHub connection</td>
                         </tr>
                         <tr>
-                            <td>AWS learning curve</td>
-                            <td><strong>Flattened</strong></td>
+                            <td>Runtime compatibility</td>
+                            <td>Updated to nodejs22</td>
                         </tr>
                         <tr>
-                            <td>Monthly cost</td>
-                            <td><strong>~$25</strong></td>
+                            <td>Understanding logs</td>
+                            <td>CloudWatch log streams</td>
+                        </tr>
+                        <tr>
+                            <td>CI/CD configuration</td>
+                            <td>"Configuration source: Repository"</td>
+                        </tr>
+                    </table>
+
+                    <h3>Deployment Timeline</h3>
+                    <div class="diagram" style="text-align: center;">
+                        1. Initial attempt ❌ (runtime error)
+                        ↓
+                        2. Read CloudWatch logs 📋
+                        ↓
+                        3. Fix apprunner.yaml 🔧
+                        ↓
+                        4. Delete & recreate service 🔄
+                        ↓
+                        5. SUCCESS ✅ Live URL obtained!</div>
+                </div>
+            </div>
+
+            <!-- SLIDE 12: AWS App Runner Status -->
+            <div class="slide slide-content"
+                data-notes="Here's the AWS App Runner console showing my service is running successfully. The green checkmark indicates the application is live and healthy. The service was created on February 2nd, 2026 and has been running continuously since then.">
+                <h2>✅ AWS App Runner - Service Running</h2>
+                <div
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">
+                    <img src="apprunner-status.png" alt="AWS App Runner Status - Running"
+                        style="max-width: 95%; max-height: 60vh; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.1);">
+                    <div style="margin-top: 30px;">
+                        <table style="max-width: 600px; margin: 0 auto;">
+                            <tr>
+                                <th>Service Name</th>
+                                <td>react-app-aws-runner</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td><span style="color: #4caf50; font-weight: bold;">✓ Running</span></td>
+                            </tr>
+                            <tr>
+                                <th>Live URL</th>
+                                <td><a href="https://gktp6jkb3c.us-east-1.awsapprunner.com" target="_blank"
+                                        style="color: #64b5f6;">gktp6jkb3c.us-east-1.awsapprunner.com</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 13: Live Demo -->
+            <div class="slide slide-demo"
+                data-notes="Let me show you the live application. Open the URL and demonstrate: homepage, click a product, add to cart, show categories dropdown, perform a search.">
+                <h1>🚀 Live Demo</h1>
+                <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn">
+                    <i class="fas fa-external-link-alt"></i> Open Live Application
+                </a>
+                <div style="margin-top: 50px;">
+                    <table style="max-width: 500px; margin: 0 auto;">
+                        <tr>
+                            <th>Setting</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td>0.25 vCPU</td>
+                        </tr>
+                        <tr>
+                            <td>Memory</td>
+                            <td>0.5 GB</td>
+                        </tr>
+                        <tr>
+                            <td>Auto-deploy</td>
+                            <td>Enabled</td>
+                        </tr>
+                        <tr>
+                            <td>Region</td>
+                            <td>us-east-1</td>
                         </tr>
                     </table>
                 </div>
-                <div>
-                    <h3>Impact Potential</h3>
+            </div>
+
+            <!-- SLIDE 12: Feedback -->
+            <div class="slide slide-content"
+                data-notes="Based on peer feedback in Workshop 4, I made several improvements including better category navigation and enhanced mobile experience.">
+                <h2>🔄 Phase 6: Feedback & Iteration</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>Feedback Received</h3>
+                        <ul>
+                            <li>"Add more categories" → <strong>Added 20+</strong></li>
+                            <li>"Make search visible" → <strong>Enlarged bar</strong></li>
+                            <li>"Add product badges" → <strong>Hot/Sale/New</strong></li>
+                            <li>"Fix mobile nav" → <strong>Responsive menu</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Iterations Made</h3>
+                        <ul>
+                            <li><span class="check">✓</span> Enhanced hover effects</li>
+                            <li><span class="check">✓</span> Loading animations</li>
+                            <li><span class="check">✓</span> Better form validation</li>
+                            <li><span class="check">✓</span> Cart notification popups</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 13: AI's Role -->
+            <div class="slide slide-content"
+                data-notes="The most effective way to use AI was with specific, detailed prompts. Vague requests didn't work well. I also learned to always review and test AI-generated code.">
+                <h2>🤖 AI's Role & Lessons Learned</h2>
+                <div class="scroll-content">
+                    <h3>Most Effective AI Prompts</h3>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Example</th>
+                            <th>Result</th>
+                        </tr>
+                        <tr>
+                            <td>Feature</td>
+                            <td>"Add product detail page with tabs"</td>
+                            <td>Complete HTML/CSS/JS</td>
+                        </tr>
+                        <tr>
+                            <td>Bug fix</td>
+                            <td>"Cart count not updating"</td>
+                            <td>Found missing listener</td>
+                        </tr>
+                        <tr>
+                            <td>Deploy help</td>
+                            <td>"Runtime not supported error"</td>
+                            <td>Suggested nodejs22</td>
+                        </tr>
+                    </table>
+
+                    <h3>Key Lessons</h3>
+                    <div class="three-column" style="margin-top: 20px;">
+                        <div class="card"><strong>1.</strong> Be specific with prompts</div>
+                        <div class="card"><strong>2.</strong> Iterate in small steps</div>
+                        <div class="card"><strong>3.</strong> Always review AI code</div>
+                        <div class="card"><strong>4.</strong> Use AI for debugging</div>
+                        <div class="card"><strong>5.</strong> Document everything</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 14: Tools Used -->
+            <div class="slide slide-content"
+                data-notes="This project used a modern development stack combining AI assistance with cloud deployment tools.">
+                <h2>🛠️ Tools Used</h2>
+                <div class="three-column">
                     <div class="card">
-                        <p><strong>For Users:</strong> Easy product browsing, fast experience</p>
+                        <h3 style="color: #e53935;">AI & Development</h3>
+                        <ul>
+                            <li><strong>Antigravity</strong> - AI coding</li>
+                            <li><strong>Cursor IDE</strong> - Editor</li>
+                            <li><strong>Claude</strong> - Prototyping</li>
+                        </ul>
                     </div>
-                    <div class="card" style="margin-top: 15px;">
-                        <p><strong>For Developers:</strong> Portfolio-ready project, hands-on cloud skills</p>
+                    <div class="card">
+                        <h3 style="color: #f57c00;">Cloud & DevOps</h3>
+                        <ul>
+                            <li><strong>AWS App Runner</strong></li>
+                            <li><strong>AWS CLI</strong></li>
+                            <li><strong>CloudWatch</strong></li>
+                        </ul>
                     </div>
-                    <div class="card" style="margin-top: 15px;">
-                        <p><strong>ROI:</strong> Foundation for real e-commerce site</p>
+                    <div class="card">
+                        <h3 style="color: #4caf50;">Version Control</h3>
+                        <ul>
+                            <li><strong>Git</strong></li>
+                            <li><strong>GitHub</strong></li>
+                            <li><strong>Auto-deploy</strong></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 16: Conclusion -->
-        <div class="slide slide-content"
-            data-notes="In conclusion, this project demonstrates the power of AI-assisted development with real cloud deployment.">
-            <h2>🎯 Conclusion & Future Roadmap</h2>
-            <div class="two-column">
-                <div>
-                    <h3>What I Built</h3>
-                    <ul>
-                        <li><span class="check">✓</span> Full e-commerce clone (6 pages)</li>
-                        <li><span class="check">✓</span> 50+ products, 20+ categories</li>
-                        <li><span class="check">✓</span> Live on AWS App Runner</li>
-                        <li><span class="check">✓</span> CI/CD with auto-deploy</li>
-                    </ul>
+            <!-- SLIDE 15: Value Add -->
+            <div class="slide slide-content"
+                data-notes="The main value is demonstrating that AI-assisted development can dramatically reduce project timelines while maintaining quality.">
+                <h2>💰 Value Add & Business Impact</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>Cost/Benefit Analysis</h3>
+                        <table>
+                            <tr>
+                                <td>Time saved</td>
+                                <td><strong>~40 hours</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Deploy complexity</td>
+                                <td><strong>Days → Minutes</strong></td>
+                            </tr>
+                            <tr>
+                                <td>AWS learning curve</td>
+                                <td><strong>Flattened</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Monthly cost</td>
+                                <td><strong>~$25</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3>Impact Potential</h3>
+                        <div class="card">
+                            <p><strong>For Users:</strong> Easy product browsing, fast experience</p>
+                        </div>
+                        <div class="card" style="margin-top: 15px;">
+                            <p><strong>For Developers:</strong> Portfolio-ready project, hands-on cloud skills</p>
+                        </div>
+                        <div class="card" style="margin-top: 15px;">
+                            <p><strong>ROI:</strong> Foundation for real e-commerce site</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3>Future Roadmap</h3>
-                    <table>
-                        <tr>
-                            <td>Phase 2</td>
-                            <td>Backend API + DynamoDB</td>
-                        </tr>
-                        <tr>
-                            <td>Phase 3</td>
-                            <td>User auth (Cognito)</td>
-                        </tr>
-                        <tr>
-                            <td>Phase 4</td>
-                            <td>Payments (Stripe)</td>
-                        </tr>
-                        <tr>
-                            <td>Phase 5</td>
-                            <td>Admin dashboard</td>
-                        </tr>
-                    </table>
+            </div>
+
+            <!-- SLIDE 16: Conclusion -->
+            <div class="slide slide-content"
+                data-notes="In conclusion, this project demonstrates the power of AI-assisted development with real cloud deployment.">
+                <h2>🎯 Conclusion & Future Roadmap</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>What I Built</h3>
+                        <ul>
+                            <li><span class="check">✓</span> Full e-commerce clone (6 pages)</li>
+                            <li><span class="check">✓</span> 50+ products, 20+ categories</li>
+                            <li><span class="check">✓</span> Live on AWS App Runner</li>
+                            <li><span class="check">✓</span> CI/CD with auto-deploy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Future Roadmap</h3>
+                        <table>
+                            <tr>
+                                <td>Phase 2</td>
+                                <td>Backend API + DynamoDB</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 3</td>
+                                <td>User auth (Cognito)</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 4</td>
+                                <td>Payments (Stripe)</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 5</td>
+                                <td>Admin dashboard</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+            </div>
+
+            <!-- SLIDE 17: Q&A -->
+            <div class="slide slide-qa" data-notes="Thank you for your attention! I'm happy to answer any questions.">
+                <h1>❓ Questions?</h1>
+                <p class="subtitle" style="margin-top: 40px;">DEDEEPYA MADIREDDY</p>
+                <div style="margin-top: 40px;">
+                    <p><i class="fas fa-globe"></i> <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com"
+                            target="_blank" style="color: #fff;">gktp6jkb3c.us-east-1.awsapprunner.com</a></p>
+                    <p><i class="fab fa-github"></i> <a href="https://github.com/Dedeepya2026/react-app-aws-runner"
+                            target="_blank" style="color: #fff;">github.com/Dedeepya2026/react-app-aws-runner</a></p>
+                </div>
+                <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn"
+                    style="margin-top: 40px;">
+                    <i class="fas fa-play"></i> Try Live Demo
+                </a>
             </div>
         </div>
 
-        <!-- SLIDE 17: Q&A -->
-        <div class="slide slide-qa" data-notes="Thank you for your attention! I'm happy to answer any questions.">
-            <h1>❓ Questions?</h1>
-            <p class="subtitle" style="margin-top: 40px;">DEDEEPYA MADIREDDY</p>
-            <div style="margin-top: 40px;">
-                <p><i class="fas fa-globe"></i> <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com" target="_blank"
-                        style="color: #fff;">gktp6jkb3c.us-east-1.awsapprunner.com</a></p>
-                <p><i class="fab fa-github"></i> <a href="https://github.com/Dedeepya2026/react-app-aws-runner"
-                        target="_blank" style="color: #fff;">github.com/Dedeepya2026/react-app-aws-runner</a></p>
-            </div>
-            <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn"
-                style="margin-top: 40px;">
-                <i class="fas fa-play"></i> Try Live Demo
-            </a>
+        <div class="speaker-notes" id="speakerNotes"></div>
+
+        <div class="keyboard-hint">
+            Press ← → or click buttons to navigate | Press F for fullscreen | Press N for notes
         </div>
-    </div>
 
-    <div class="speaker-notes" id="speakerNotes"></div>
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i> Previous
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+                Next <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
 
-    <div class="keyboard-hint">
-        Press ← → or click buttons to navigate | Press F for fullscreen | Press N for notes
-    </div>
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">17</span>
+        </div>
 
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
-            <i class="fas fa-chevron-left"></i> Previous
-        </button>
-        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
-            Next <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
+        <script>
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let notesVisible = false;
 
-    <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">17</span>
-    </div>
+            document.getElementById('totalSlides').textContent = totalSlides;
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        let notesVisible = false;
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
 
-        document.getElementById('totalSlides').textContent = totalSlides;
+                if (index >= totalSlides) currentSlide = 0;
+                if (index < 0) currentSlide = totalSlides - 1;
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
 
-            if (index >= totalSlides) currentSlide = 0;
-            if (index < 0) currentSlide = totalSlides - 1;
+                document.getElementById('currentSlide').textContent = currentSlide + 1;
+                document.getElementById('progressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
 
-            slides[currentSlide].classList.add('active');
+                // Update speaker notes
+                const notes = slides[currentSlide].getAttribute('data-notes');
+                document.getElementById('speakerNotes').textContent = notes || '';
 
-            document.getElementById('currentSlide').textContent = currentSlide + 1;
-            document.getElementById('progressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
-
-            // Update speaker notes
-            const notes = slides[currentSlide].getAttribute('data-notes');
-            document.getElementById('speakerNotes').textContent = notes || '';
-
-            // Update button states
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
-        }
-
-        function changeSlide(direction) {
-            currentSlide += direction;
-            showSlide(currentSlide);
-        }
-
-        function toggleNotes() {
-            notesVisible = !notesVisible;
-            document.getElementById('speakerNotes').classList.toggle('visible', notesVisible);
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                document.exitFullscreen();
+                // Update button states
+                document.getElementById('prevBtn').disabled = currentSlide === 0;
+                document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
             }
-        }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                changeSlide(1);
-            } else if (e.key === 'ArrowLeft') {
-                changeSlide(-1);
-            } else if (e.key === 'f' || e.key === 'F') {
-                toggleFullscreen();
-            } else if (e.key === 'n' || e.key === 'N') {
-                toggleNotes();
+            function changeSlide(direction) {
+                currentSlide += direction;
+                showSlide(currentSlide);
             }
-        });
 
-        // Initialize
-        showSlide(0);
-    </script>
+            function toggleNotes() {
+                notesVisible = !notesVisible;
+                document.getElementById('speakerNotes').classList.toggle('visible', notesVisible);
+            }
+
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    changeSlide(1);
+                } else if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'f' || e.key === 'F') {
+                    toggleFullscreen();
+                } else if (e.key === 'n' || e.key === 'N') {
+                    toggleNotes();
+                }
+            });
+
+            // Initialize
+            showSlide(0);
+        </script>
 </body>
 
 </html>
