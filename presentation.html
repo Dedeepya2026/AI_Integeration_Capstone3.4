@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temu Clone Presentation - DEDEEPYA MADIREDDY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Slide Backgrounds */
+        .slide-title {
+            background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+        }
+
+        .slide-demo {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide-qa {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ffd54f;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0 15px;
+            color: #64b5f6;
+        }
+
+        p,
+        li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .author {
+            font-size: 1.5rem;
+            margin-top: 40px;
+            color: #ffd54f;
+        }
+
+        .url {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .url a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        th,
+        td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd54f;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Code blocks */
+        pre {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        code {
+            color: #58a6ff;
+        }
+
+        /* Lists */
+        ul,
+        ol {
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #4caf50;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+
+        .badge-red {
+            background: #e53935;
+        }
+
+        .badge-orange {
+            background: #f57c00;
+        }
+
+        .badge-blue {
+            background: #1976d2;
+        }
+
+        /* Grid layouts */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        /* Architecture diagram */
+        .diagram {
+            background: #0d1117;
+            padding: 30px;
+            border-radius: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e53935, #f57c00);
+            transition: width 0.3s ease;
+        }
+
+        /* Slide counter */
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Checkmarks */
+        .check {
+            color: #4caf50;
+        }
+
+        .cross {
+            color: #e53935;
+        }
+
+        /* Live demo button */
+        .demo-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #ffd54f;
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 213, 79, 0.4);
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: rgba(255, 213, 79, 0.2);
+            border-left: 4px solid #ffd54f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Scrollable content */
+        .scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+
+        .scroll-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scroll-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        /* Speaker notes toggle */
+        .notes-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .speaker-notes {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            font-size: 1rem;
+            line-height: 1.6;
+            z-index: 999;
+        }
+
+        .speaker-notes.visible {
+            display: block;
+        }
+
+        /* Keyboard hints */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            opacity: 0.5;
+        }
+
+        /* Fullscreen button */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">
+        <i class="fas fa-expand"></i> Fullscreen
+    </button>
+
+    <button class="notes-toggle" onclick="toggleNotes()">
+        <i class="fas fa-sticky-note"></i> Notes
+    </button>
+
+    <div class="slideshow-container">
+        <!-- SLIDE 1: Title -->
+        <div class="slide slide-title active"
+            data-notes="Welcome everyone. Today I'm presenting my Temu Clone application—a fully functional e-commerce web app built using AI-assisted development with Antigravity and deployed live on AWS App Runner.">
+            <h1>🛒 Temu Clone</h1>
+            <p class="subtitle">Shop Like a Billionaire</p>
+            <p class="author"><strong>DEDEEPYA MADIREDDY</strong></p>
+            <div class="url">
+                <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank">
+                    <i class="fas fa-globe"></i> gktp6jkb3c.us-east-1.awsapprunner.com
+                </a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.8;">
+                <span class="badge">HTML5</span>
+                <span class="badge badge-blue">CSS3</span>
+                <span class="badge badge-orange">JavaScript</span>
+                <span class="badge badge-red">Node.js</span>
+                <span class="badge">AWS App Runner</span>
+            </p>
+        </div>
+
+        <!-- SLIDE 2: Executive Summary -->
+        <div class="slide slide-content"
+            data-notes="This project solves two problems: demonstrating a modern shopping experience with categories, search, and checkout, and providing hands-on experience with cloud deployment using AWS App Runner.">
+            <h2>📊 Executive Summary</h2>
+            <div class="scroll-content">
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Solution</th>
+                        <th>Key Metrics</th>
+                    </tr>
+                    <tr>
+                        <td>Shoppers need streamlined deal browsing</td>
+                        <td>Modern e-commerce clone with search & filtering</td>
+                        <td><strong>6</strong> HTML pages</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud deployment is complex</td>
+                        <td>AI-assisted dev + AWS App Runner</td>
+                        <td><strong>&lt;5 min</strong> deploy time</td>
+                    </tr>
+                    <tr>
+                        <td>No CI/CD experience</td>
+                        <td>GitHub → AWS auto-deployment</td>
+                        <td><strong>Auto-deploy</strong> enabled</td>
+                    </tr>
+                </table>
+
+                <h3>Key Achievements</h3>
+                <ul>
+                    <li><span class="check">✓</span> Full e-commerce UI with 50+ products</li>
+                    <li><span class="check">✓</span> Responsive design (mobile + desktop)</li>
+                    <li><span class="check">✓</span> Live cloud deployment with auto-scaling</li>
+                    <li><span class="check">✓</span> Zero-config CI/CD pipeline</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Problem Framing -->
+        <div class="slide slide-content"
+            data-notes="In Workshops 1 and 2, I framed the problem: Could AI help me build a complete e-commerce application quickly? I chose Temu because it has rich features that would challenge both the AI and my skills.">
+            <h2>🎯 Phase 1-2: Problem Framing</h2>
+            <div class="scroll-content">
+                <div class="highlight-box">
+                    <h3 style="margin-top: 0;">Problem Statement</h3>
+                    <p>"Building an e-commerce application requires complex setup: product catalogs, search
+                        functionality, cart management, and cloud deployment—typically taking weeks of development."</p>
+                </div>
+
+                <div class="highlight-box" style="background: rgba(100,181,246,0.2); border-color: #64b5f6;">
+                    <h3 style="margin-top: 0; color: #64b5f6;">AI Use Case</h3>
+                    <p>"Can AI-assisted development with Antigravity accelerate building a production-ready e-commerce
+                        clone from concept to live deployment?"</p>
+                </div>
+
+                <h3>Why This Matters</h3>
+                <ul>
+                    <li>E-commerce is a <strong>$6.3 trillion</strong> industry</li>
+                    <li>Understanding full-stack development is essential</li>
+                    <li>Cloud deployment skills are in high demand</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Technical Architecture -->
+        <div class="slide slide-content"
+            data-notes="The architecture is intentionally simple but production-ready. A Node.js Express server serves static files on port 8080. AWS App Runner handles HTTPS, scaling, and deployment.">
+            <h2>🏗️ Technical Architecture</h2>
+            <div class="two-column">
+                <div>
+                    <div class="diagram">┌─────────────────────────────────┐
+                        │ AWS App Runner │
+                        │ ┌───────────────────────────┐ │
+                        │ │ Node.js 22 + Express │ │
+                        │ │ ┌─────────────────┐ │ │
+                        │ │ │ Static Files │ │ │
+                        │ │ │ HTML/CSS/JS │ │ │
+                        │ │ └─────────────────┘ │ │
+                        │ └───────────────────────────┘ │
+                        └─────────────────────────────────┘
+                        ▲ HTTPS
+                        │
+                        ┌─────┴─────┐
+                        │ Browser │
+                        └───────────┘</div>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                        </tr>
+                        <tr>
+                            <td>Frontend</td>
+                            <td>HTML5, CSS3, JavaScript</td>
+                        </tr>
+                        <tr>
+                            <td>Server</td>
+                            <td>Node.js 22 + Express</td>
+                        </tr>
+                        <tr>
+                            <td>Styling</td>
+                            <td>Custom CSS + Google Fonts</td>
+                        </tr>
+                        <tr>
+                            <td>Deployment</td>
+                            <td>AWS App Runner</td>
+                        </tr>
+                        <tr>
+                            <td>CI/CD</td>
+                            <td>GitHub → Auto-deploy</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Design & Prototype -->
+        <div class="slide slide-content"
+            data-notes="I started in Claude Artifacts to rapidly prototype the UI. The AI generated the initial HTML structure, CSS styling, and JavaScript interactions. This gave me a working demo within hours instead of days.">
+            <h2>🎨 Phase 3: Design & Prototype</h2>
+            <div class="scroll-content">
+                <h3>Workshop 1: AI Prompts Used</h3>
+                <div class="card" style="margin-bottom: 20px;">
+                    <ol>
+                        <li>"Create a Temu-style e-commerce homepage with hero banner and product grid"</li>
+                        <li>"Add category navigation with dropdown and search functionality"</li>
+                        <li>"Build a product detail page with variants and add-to-cart"</li>
+                    </ol>
+                </div>
+
+                <h3>Prototype Features Generated</h3>
+                <div class="three-column">
+                    <div class="card">
+                        <h3 style="color: #e53935;">🎯 Hero Banner</h3>
+                        <p>Valentine's Day sale theme with CTAs</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: #f57c00;">📦 Product Grid</h3>
+                        <p>50+ items with prices & badges</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: #4caf50;">🔍 Search</h3>
+                        <p>Query param filtering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: IDE Migration -->
+        <div class="slide slide-content"
+            data-notes="Workshop 2 focused on migrating from Claude Artifacts to Cursor IDE. I set up a proper Node.js project structure, added deployment configuration, and connected everything to GitHub.">
+            <h2>💻 IDE Migration & Local Development</h2>
+            <div class="scroll-content">
+                <h3>Workshop 2: Migration Process</h3>
+                <div class="diagram" style="text-align: center; font-size: 1.2rem;">Claude Artifacts → Export Code →
+                    Cursor IDE → Local Testing → Git Push</div>
+
+                <h3>Files Created</h3>
+                <table>
+                    <tr>
+                        <th>File</th>
+                        <th>Size</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>index.html</td>
+                        <td>34 KB</td>
+                        <td>Homepage with products</td>
+                    </tr>
+                    <tr>
+                        <td>product.html</td>
+                        <td>12 KB</td>
+                        <td>Product detail page</td>
+                    </tr>
+                    <tr>
+                        <td>checkout.html</td>
+                        <td>29 KB</td>
+                        <td>Checkout form</td>
+                    </tr>
+                    <tr>
+                        <td>styles.css</td>
+                        <td>55 KB</td>
+                        <td>2,900+ lines of CSS</td>
+                    </tr>
+                    <tr>
+                        <td>script.js</td>
+                        <td>85 KB</td>
+                        <td>All JavaScript logic</td>
+                    </tr>
+                    <tr>
+                        <td>apprunner.yaml</td>
+                        <td>222 B</td>
+                        <td>Deployment config</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Testing -->
+        <div class="slide slide-content"
+            data-notes="For testing, I validated all user flows manually and used browser dev tools to check responsiveness. I also reviewed all AI-generated code for security issues.">
+            <h2>🧪 Phase 4: Testing & Responsible AI</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Functional Testing</h3>
+                    <ul>
+                        <li><span class="check">✓</span> Product browsing & navigation</li>
+                        <li><span class="check">✓</span> Search with query params</li>
+                        <li><span class="check">✓</span> Category filtering</li>
+                        <li><span class="check">✓</span> Add to cart functionality</li>
+                        <li><span class="check">✓</span> Checkout form validation</li>
+                        <li><span class="check">✓</span> Responsive design</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>AI Responsibility</h3>
+                    <table>
+                        <tr>
+                            <th>Concern</th>
+                            <th>Mitigation</th>
+                        </tr>
+                        <tr>
+                            <td>Code quality</td>
+                            <td>Manual review</td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>No sensitive data</td>
+                        </tr>
+                        <tr>
+                            <td>Accessibility</td>
+                            <td>Semantic HTML</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>Human verification</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Bugs Fixed -->
+        <div class="slide slide-content"
+            data-notes="The biggest challenge was the deployment runtime error. AWS App Runner didn't support Node 18, so I had to check their documentation and update to Node 22.">
+            <h2>🐛 Bugs Found & Fixed</h2>
+            <div class="scroll-content">
+                <table>
+                    <tr>
+                        <th>Bug</th>
+                        <th>Impact</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>Runtime version error</td>
+                        <td>Deployment failed</td>
+                        <td>Updated to <code>nodejs22</code></td>
+                    </tr>
+                    <tr>
+                        <td>Port configuration</td>
+                        <td>App not accessible</td>
+                        <td>Set <code>port: 8080</code></td>
+                    </tr>
+                    <tr>
+                        <td>Image loading</td>
+                        <td>Broken images</td>
+                        <td>Used reliable CDN URLs</td>
+                    </tr>
+                    <tr>
+                        <td>Cart persistence</td>
+                        <td>Reset on refresh</td>
+                        <td>Added localStorage</td>
+                    </tr>
+                    <tr>
+                        <td>Search encoding</td>
+                        <td>Special chars broke</td>
+                        <td>URL encode/decode</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box" style="margin-top: 30px;">
+                    <h3 style="margin-top: 0;">Critical Fix</h3>
+                    <pre><code>Error: "The specified runtime version is not supported"
+Solution: Changed nodejs18 → nodejs22 in apprunner.yaml</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: AWS Deployment -->
+        <div class="slide slide-content"
+            data-notes="I used AWS CLI integrated with Cursor to create the App Runner service. The apprunner.yaml file tells AWS how to build and run the app.">
+            <h2>☁️ Phase 5: AWS Deployment</h2>
+            <div class="two-column">
+                <div>
+                    <h3>apprunner.yaml</h3>
+                    <pre><code>version: 1.0
+runtime: nodejs22
+build:
+  commands:
+    pre-build:
+      - npm install
+    build:
+      - npm run build
+run:
+  command: npm start
+  network:
+    port: 8080
+  env:
+    - name: NODE_ENV
+      value: production</code></pre>
+                </div>
+                <div>
+                    <h3>AWS CLI Commands</h3>
+                    <pre><code># Create GitHub connection
+aws apprunner create-connection \
+  --connection-name github-app-runner
+
+# Create App Runner service
+aws apprunner create-service \
+  --cli-input-json file://config.json
+
+# Get live URL
+aws apprunner list-services \
+  --query "ServiceSummaryList[].ServiceUrl"</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Deployment Challenges -->
+        <div class="slide slide-content"
+            data-notes="Deployment wasn't smooth on the first try. The key learning was to always check CloudWatch logs for the actual error message.">
+            <h2>🚧 Deployment Challenges</h2>
+            <div class="scroll-content">
+                <table>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>First-time AWS setup</td>
+                        <td>Console wizard for GitHub connection</td>
+                    </tr>
+                    <tr>
+                        <td>Runtime compatibility</td>
+                        <td>Updated to nodejs22</td>
+                    </tr>
+                    <tr>
+                        <td>Understanding logs</td>
+                        <td>CloudWatch log streams</td>
+                    </tr>
+                    <tr>
+                        <td>CI/CD configuration</td>
+                        <td>"Configuration source: Repository"</td>
+                    </tr>
+                </table>
+
+                <h3>Deployment Timeline</h3>
+                <div class="diagram" style="text-align: center;">
+                    1. Initial attempt ❌ (runtime error)
+                    ↓
+                    2. Read CloudWatch logs 📋
+                    ↓
+                    3. Fix apprunner.yaml 🔧
+                    ↓
+                    4. Delete & recreate service 🔄
+                    ↓
+                    5. SUCCESS ✅ Live URL obtained!</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: Live Demo -->
+        <div class="slide slide-demo"
+            data-notes="Let me show you the live application. Open the URL and demonstrate: homepage, click a product, add to cart, show categories dropdown, perform a search.">
+            <h1>🚀 Live Demo</h1>
+            <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn">
+                <i class="fas fa-external-link-alt"></i> Open Live Application
+            </a>
+            <div style="margin-top: 50px;">
+                <table style="max-width: 500px; margin: 0 auto;">
+                    <tr>
+                        <th>Setting</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>0.25 vCPU</td>
+                    </tr>
+                    <tr>
+                        <td>Memory</td>
+                        <td>0.5 GB</td>
+                    </tr>
+                    <tr>
+                        <td>Auto-deploy</td>
+                        <td>Enabled</td>
+                    </tr>
+                    <tr>
+                        <td>Region</td>
+                        <td>us-east-1</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: Feedback -->
+        <div class="slide slide-content"
+            data-notes="Based on peer feedback in Workshop 4, I made several improvements including better category navigation and enhanced mobile experience.">
+            <h2>🔄 Phase 6: Feedback & Iteration</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Feedback Received</h3>
+                    <ul>
+                        <li>"Add more categories" → <strong>Added 20+</strong></li>
+                        <li>"Make search visible" → <strong>Enlarged bar</strong></li>
+                        <li>"Add product badges" → <strong>Hot/Sale/New</strong></li>
+                        <li>"Fix mobile nav" → <strong>Responsive menu</strong></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Iterations Made</h3>
+                    <ul>
+                        <li><span class="check">✓</span> Enhanced hover effects</li>
+                        <li><span class="check">✓</span> Loading animations</li>
+                        <li><span class="check">✓</span> Better form validation</li>
+                        <li><span class="check">✓</span> Cart notification popups</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: AI's Role -->
+        <div class="slide slide-content"
+            data-notes="The most effective way to use AI was with specific, detailed prompts. Vague requests didn't work well. I also learned to always review and test AI-generated code.">
+            <h2>🤖 AI's Role & Lessons Learned</h2>
+            <div class="scroll-content">
+                <h3>Most Effective AI Prompts</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                    <tr>
+                        <td>Feature</td>
+                        <td>"Add product detail page with tabs"</td>
+                        <td>Complete HTML/CSS/JS</td>
+                    </tr>
+                    <tr>
+                        <td>Bug fix</td>
+                        <td>"Cart count not updating"</td>
+                        <td>Found missing listener</td>
+                    </tr>
+                    <tr>
+                        <td>Deploy help</td>
+                        <td>"Runtime not supported error"</td>
+                        <td>Suggested nodejs22</td>
+                    </tr>
+                </table>
+
+                <h3>Key Lessons</h3>
+                <div class="three-column" style="margin-top: 20px;">
+                    <div class="card"><strong>1.</strong> Be specific with prompts</div>
+                    <div class="card"><strong>2.</strong> Iterate in small steps</div>
+                    <div class="card"><strong>3.</strong> Always review AI code</div>
+                    <div class="card"><strong>4.</strong> Use AI for debugging</div>
+                    <div class="card"><strong>5.</strong> Document everything</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: Tools Used -->
+        <div class="slide slide-content"
+            data-notes="This project used a modern development stack combining AI assistance with cloud deployment tools.">
+            <h2>🛠️ Tools Used</h2>
+            <div class="three-column">
+                <div class="card">
+                    <h3 style="color: #e53935;">AI & Development</h3>
+                    <ul>
+                        <li><strong>Antigravity</strong> - AI coding</li>
+                        <li><strong>Cursor IDE</strong> - Editor</li>
+                        <li><strong>Claude</strong> - Prototyping</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: #f57c00;">Cloud & DevOps</h3>
+                    <ul>
+                        <li><strong>AWS App Runner</strong></li>
+                        <li><strong>AWS CLI</strong></li>
+                        <li><strong>CloudWatch</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: #4caf50;">Version Control</h3>
+                    <ul>
+                        <li><strong>Git</strong></li>
+                        <li><strong>GitHub</strong></li>
+                        <li><strong>Auto-deploy</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: Value Add -->
+        <div class="slide slide-content"
+            data-notes="The main value is demonstrating that AI-assisted development can dramatically reduce project timelines while maintaining quality.">
+            <h2>💰 Value Add & Business Impact</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Cost/Benefit Analysis</h3>
+                    <table>
+                        <tr>
+                            <td>Time saved</td>
+                            <td><strong>~40 hours</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Deploy complexity</td>
+                            <td><strong>Days → Minutes</strong></td>
+                        </tr>
+                        <tr>
+                            <td>AWS learning curve</td>
+                            <td><strong>Flattened</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Monthly cost</td>
+                            <td><strong>~$25</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Impact Potential</h3>
+                    <div class="card">
+                        <p><strong>For Users:</strong> Easy product browsing, fast experience</p>
+                    </div>
+                    <div class="card" style="margin-top: 15px;">
+                        <p><strong>For Developers:</strong> Portfolio-ready project, hands-on cloud skills</p>
+                    </div>
+                    <div class="card" style="margin-top: 15px;">
+                        <p><strong>ROI:</strong> Foundation for real e-commerce site</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: Conclusion -->
+        <div class="slide slide-content"
+            data-notes="In conclusion, this project demonstrates the power of AI-assisted development with real cloud deployment.">
+            <h2>🎯 Conclusion & Future Roadmap</h2>
+            <div class="two-column">
+                <div>
+                    <h3>What I Built</h3>
+                    <ul>
+                        <li><span class="check">✓</span> Full e-commerce clone (6 pages)</li>
+                        <li><span class="check">✓</span> 50+ products, 20+ categories</li>
+                        <li><span class="check">✓</span> Live on AWS App Runner</li>
+                        <li><span class="check">✓</span> CI/CD with auto-deploy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Future Roadmap</h3>
+                    <table>
+                        <tr>
+                            <td>Phase 2</td>
+                            <td>Backend API + DynamoDB</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 3</td>
+                            <td>User auth (Cognito)</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 4</td>
+                            <td>Payments (Stripe)</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 5</td>
+                            <td>Admin dashboard</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17: Q&A -->
+        <div class="slide slide-qa" data-notes="Thank you for your attention! I'm happy to answer any questions.">
+            <h1>❓ Questions?</h1>
+            <p class="subtitle" style="margin-top: 40px;">DEDEEPYA MADIREDDY</p>
+            <div style="margin-top: 40px;">
+                <p><i class="fas fa-globe"></i> <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com" target="_blank"
+                        style="color: #fff;">gktp6jkb3c.us-east-1.awsapprunner.com</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/Dedeepya2026/react-app-aws-runner"
+                        target="_blank" style="color: #fff;">github.com/Dedeepya2026/react-app-aws-runner</a></p>
+            </div>
+            <a href="https://gktp6jkb3c.us-east-1.awsapprunner.com/index.html" target="_blank" class="demo-btn"
+                style="margin-top: 40px;">
+                <i class="fas fa-play"></i> Try Live Demo
+            </a>
+        </div>
+    </div>
+
+    <div class="speaker-notes" id="speakerNotes"></div>
+
+    <div class="keyboard-hint">
+        Press ← → or click buttons to navigate | Press F for fullscreen | Press N for notes
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            Next <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">17</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let notesVisible = false;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            if (index >= totalSlides) currentSlide = 0;
+            if (index < 0) currentSlide = totalSlides - 1;
+
+            slides[currentSlide].classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('progressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+            // Update speaker notes
+            const notes = slides[currentSlide].getAttribute('data-notes');
+            document.getElementById('speakerNotes').textContent = notes || '';
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        function toggleNotes() {
+            notesVisible = !notesVisible;
+            document.getElementById('speakerNotes').classList.toggle('visible', notesVisible);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            } else if (e.key === 'n' || e.key === 'N') {
+                toggleNotes();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+
+</html>
