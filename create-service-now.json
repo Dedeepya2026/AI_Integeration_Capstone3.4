@@ -1,0 +1,23 @@
+{
+  "ServiceName": "react-app-aws-runner",
+  "SourceConfiguration": {
+    "AuthenticationConfiguration": {
+      "ConnectionArn": "arn:aws:apprunner:us-east-1:040740748442:connection/Integrationassign/5a2c86358bac40f3a74e7660c09726c7"
+    },
+    "AutoDeploymentsEnabled": true,
+    "CodeRepository": {
+      "RepositoryUrl": "https://github.com/Dedeepya2026/react-app-aws-runner",
+      "SourceCodeVersion": {
+        "Type": "BRANCH",
+        "Value": "master"
+      },
+      "CodeConfiguration": {
+        "ConfigurationSource": "REPOSITORY"
+      }
+    }
+  },
+  "InstanceConfiguration": {
+    "Cpu": "0.25 vCPU",
+    "Memory": "0.5 GB"
+  }
+}
